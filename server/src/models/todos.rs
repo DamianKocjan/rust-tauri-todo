@@ -15,6 +15,10 @@ pub mod todos {
     }
 
     impl Todo {
+        pub fn count(db: &mut Connection) -> QueryResult<i64> {
+            todos::table.count().get_result(db)
+        }
+
         pub fn create(db: &mut Connection, item: &TodoChangeSet) -> QueryResult<Self> {
             use crate::schema::todos::dsl::*;
 
@@ -68,7 +72,8 @@ pub mod todos {
     #[derive(AsChangeset, Debug, Deserialize, Insertable)]
     #[diesel(table_name = todos)]
     pub struct TodoChangeSet {
-        pub title: String,
-        pub description: String,
+        pub title: Option<String>,
+        pub description: Option<String>,
+        pub is_completed: Option<bool>,
     }
 }

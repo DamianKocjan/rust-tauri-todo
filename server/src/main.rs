@@ -21,7 +21,13 @@ async fn main() -> std::io::Result<()> {
     let config = load_config();
 
     HttpServer::new(move || {
+        let cors = actix_cors::Cors::default()
+            .allow_any_origin()
+            .allow_any_method()
+            .allow_any_header();
+
         let mut app = App::new()
+            .wrap(cors)
             .wrap(Compress::default())
             .wrap(NormalizePath::trim())
             .wrap(Logger::default());

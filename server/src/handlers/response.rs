@@ -21,7 +21,7 @@ pub mod response {
         result: &T,
         page: i64,
         page_size: i64,
-        total: usize,
+        total: i64,
     ) -> HttpResponse {
         res.json(json!({
             "success": code,

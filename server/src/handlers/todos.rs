@@ -29,6 +29,11 @@ pub mod todos {
             None => PaginationParams::MAX_PAGE_SIZE as i64,
         };
 
+        let total = match Todo::count(&mut db) {
+            Ok(total) => total,
+            Err(_) => 0,
+        };
+
         match result {
             Ok(todos) => Ok(response::success_paginated(
                 &mut HttpResponse::Ok(),
@@ -36,7 +41,7 @@ pub mod todos {
                 &todos,
                 page,
                 page_size,
-                todos.len(),
+                total,
             )),
             Err(_) => Ok(response::error(
                 &mut HttpResponse::InternalServerError(),
