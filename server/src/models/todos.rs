@@ -47,7 +47,7 @@ pub mod todos {
                 None => 0,
             };
 
-            todos.limit(limit).offset(offset).load(db)
+            todos.order_by(id).limit(limit).offset(offset).load(db)
         }
 
         pub fn update(
