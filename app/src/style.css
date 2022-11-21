@@ -23,30 +23,10 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: 0.75s;
-}
-
-.logo.tauri:hover {
-  filter: drop-shadow(0 0 2em #24c8db);
-}
-
 .row {
   display: flex;
   justify-content: center;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+  gap: 1em;
 }
 
 h1 {
@@ -80,18 +60,10 @@ button {
   outline: none;
 }
 
-#greet-input {
-  margin-right: 5px;
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     color: #f6f6f6;
     background-color: #2f2f2f;
-  }
-
-  a:hover {
-    color: #24c8db;
   }
 
   input,
@@ -99,4 +71,122 @@ button {
     color: #ffffff;
     background-color: #0f0f0f98;
   }
+}
+
+.error {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f6f6f6;
+  background-color: #0f0f0f;
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin: 2em 0.5em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 0 0.25em #0f0f0f;
+}
+
+.todo__create {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 1em;
+  width: fit-content;
+}
+
+.btn__fetch-next {
+  width: fit-content;
+  margin: 1em auto 0;
+}
+
+.todo {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 0.5em auto;
+  width: fit-content;
+}
+
+.todo + .todo {
+  border-top: 1px solid #0f0f0f;
+  padding-top: 1em;
+}
+
+.todo.completed {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.todo__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.todo__description {
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.todo__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75em;
+}
+
+.todo__action {
+  padding: 0.5em 1em;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.todo__edit-input {
+  font-size: 0.8em;
+  width: 100%;
+}
+
+.todo__action--delete {
+  color: #ffffff;
+  background-color: #b43737;
+}
+
+.todo__action--delete:hover {
+  background-color: #b92929;
+}
+
+.todo__action--edit {
+  color: #ffffff;
+  background-color: #d88639;
+}
+
+.todo__action--edit:hover {
+  background-color: #d19825;
+}
+
+.todo__action--isCompleted {
+  color: #ffffff;
+  background-color: #396cd8;
+}
+
+.todo__action--isCompleted:hover {
+  background-color: #2f5bb5;
+}
+
+.todo__action--cancel {
+  color: #ffffff;
+  background-color: #0f0f0f;
+}
+
+.todo__action--cancel:hover {
+  background-color: #1f1f1f;
+}
+
+.todo__action--save {
+  color: #ffffff;
+  background-color: #39d839;
+}
+
+.todo__action--save:hover {
+  background-color: #2fb52f;
 }
