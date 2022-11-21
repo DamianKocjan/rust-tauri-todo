@@ -19,7 +19,7 @@ pub mod todos {
             todos::table.count().get_result(db)
         }
 
-        pub fn create(db: &mut Connection, item: &TodoChangeSet) -> QueryResult<Self> {
+        pub fn create(db: &mut Connection, item: &TodoCreateSet) -> QueryResult<Self> {
             use crate::schema::todos::dsl::*;
 
             insert_into(todos).values(item).get_result(db)
@@ -67,6 +67,13 @@ pub mod todos {
 
             diesel::delete(todos.filter(id.eq(item_id))).execute(db)
         }
+    }
+
+    #[derive(Debug, Deserialize, Insertable)]
+    #[diesel(table_name = todos)]
+    pub struct TodoCreateSet {
+        pub title: String,
+        pub description: String,
     }
 
     #[derive(AsChangeset, Debug, Deserialize, Insertable)]

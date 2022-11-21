@@ -9,7 +9,6 @@ mod utils;
 extern crate diesel;
 
 use actix_web::middleware::{Compress, Logger, NormalizePath};
-use actix_web::web::Data;
 use actix_web::{web, App, HttpServer};
 use database::Database;
 
@@ -32,7 +31,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(NormalizePath::trim())
             .wrap(Logger::default());
 
-        app = app.app_data(Data::new(Database::new(config.database.url.clone())));
+        app = app.app_data(web::Data::new(Database::new(config.database.url.clone())));
 
         let mut api_scope = web::scope("/api/v1");
         api_scope = api_scope.service(todos::endpoints(web::scope("/todos")));
